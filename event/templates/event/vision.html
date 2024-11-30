@@ -1,0 +1,215 @@
+{% extends 'main.html' %}
+
+{% block content %}
+<style>
+.vision-page {
+    padding: 2rem;
+    font-family: Arial, sans-serif;
+    color: #333;
+    line-height: 1.6;
+    position: relative;
+}
+
+/* Section Titles */
+.section-title {
+    text-align: center;
+    color: #28a745;
+    font-size: 2rem;
+    margin-bottom: 2rem;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+/* Timeline container */
+.timeline {
+    position: relative;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Vertical timeline line */
+.timeline::after {
+    content: '';
+    position: absolute;
+    width: 4px;
+    background-color: #28a745;
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+/* Timeline item container */
+.timeline-item {
+    padding: 1.5rem;
+    position: relative;
+    width: 50%;
+    box-sizing: border-box;
+    opacity: 0;
+    transform: translateY(50px);
+    transition: all 0.8s ease-in-out;
+    margin-bottom: 2rem;
+}
+
+/* Alternating timeline items */
+.timeline-item:nth-child(odd) {
+    left: 0;
+    text-align: right;
+}
+
+.timeline-item:nth-child(even) {
+    left: 50%;
+    text-align: left;
+}
+
+/* Connecting dots */
+.timeline-item::before {
+    content: '';
+    position: absolute;
+    top: 20px;
+    width: 20px;
+    height: 20px;
+    background-color: #28a745;
+    border-radius: 50%;
+    border: 4px solid #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    z-index: 1;
+}
+
+.timeline-item:nth-child(odd)::before {
+    right: -12px;
+}
+
+.timeline-item:nth-child(even)::before {
+    left: -12px;
+}
+
+/* Card styling */
+.card {
+    background: linear-gradient(145deg, #ffffff, #f0f0f0);
+    border-radius: 12px;
+    border: 2px solid #28a745;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    padding: 1.5rem;
+    position: relative;
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    height: 100%;
+}
+
+/* Hover effect */
+.card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3);
+}
+
+/* Content alignment inside card */
+.card .date {
+    color: #28a745;
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+    align-self: flex-start;
+}
+
+.card .descr {
+    font-size: 1rem;
+    line-height: 1.5;
+    text-align: justify;
+    flex-grow: 1;
+    margin-bottom: 1rem;
+}
+
+/* Scroll effect */
+.timeline-item.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+</style>
+
+<section class="vision-page">
+    <h1 class="section-title">Our Vision and Goals</h1>
+    <div class="timeline">
+        <!-- Vision Timeline -->
+        <div class="timeline-item">
+            <div class="card">
+                <div class="date">Vision</div>
+                <div class="descr">
+                    1. Empower students with knowledge and skills in free and open-source.<br><br>
+                    2. Encourage innovation, creativity, and collaboration.<br><br>
+                    3. Establish a culture of using open-source alternatives in the college.<br><br>
+                    4. Equip students with industry-relevant open-source tools.<br><br>
+                    5. Promote sustainable technology solutions within the college community.
+                </div>
+            </div>
+        </div>
+
+        <div class="timeline-item">
+            <div class="card">
+                <div class="date">Goals</div>
+                <div class="descr">
+                    * FOSS Awareness: Educate students and faculty on the advantages of open-source software.<br><br>
+                    * Skill Development: Provide training in open-source tools widely used in the industry.<br><br>
+                    * Contribution to FOSS Projects: Encourage students to participate in global FOSS projects.<br><br>
+                    * Community Building: Create a collaborative network of students, faculty, and professionals around FOSS.<br><br>
+                    * Foster Innovation: Inspire students to develop their own open-source solutions to real-world issues.
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <hr>
+
+    <h1 class="section-title">What We Offer</h1>
+    <div class="timeline">
+        <!-- Offering Timeline -->
+        <div class="timeline-item">
+            <div class="card">
+                <div class="date">For Students</div>
+                <div class="descr">
+                    1. Hands-on learning through real-world project contributions.<br><br>
+                    2. Enhanced career opportunities and resume-building through FOSS involvement.<br><br>
+                    3. Skills in coding, version control, and software testing.<br><br>
+                    4. Global exposure through collaborations in international FOSS communities.
+                </div>
+            </div>
+        </div>
+
+        <div class="timeline-item">
+            <div class="card">
+                <div class="date">For Faculty</div>
+                <div class="descr">
+                    * Opportunities to integrate FOSS tools into the curriculum.<br><br>
+                    * A platform for research and academic publications.<br><br>
+                    * Collaborative projects that improve student mentorship and engagement.
+                </div>
+            </div>
+        </div>
+
+        <div class="timeline-item">
+            <div class="card">
+                <div class="date">For the Institution</div>
+                <div class="descr">
+                    * Recognition in the tech and open-source communities.<br><br>
+                    * An innovation hub encouraging student creativity.<br><br>
+                    * Cost efficiency by reducing dependency on proprietary software.
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+// Trigger animation after page load
+window.addEventListener('DOMContentLoaded', function() {
+    const items = document.querySelectorAll('.timeline-item');
+    
+    items.forEach(item => {
+        item.classList.add('show'); // Trigger the animation immediately
+    });
+});
+</script>
+{% endblock %}

@@ -1,0 +1,115 @@
+{% extends 'main.html' %}
+{% block content %}
+
+<style>
+    /* Existing styles remain unchanged */
+    .team-container {
+        padding: 3rem 0;
+        border-radius: 15px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .team-row {
+        display: flex;
+        justify-content: space-around;
+        flex-wrap: wrap;
+        gap: 2rem;
+    }
+
+    .team-card {
+        width: 22%;
+        max-width: 250px;
+        background: #ffffff;
+        border: 2px solid #81c784;
+        border-radius: 15px;
+        overflow: hidden;
+        text-align: center;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .team-card:hover {
+        transform: translateY(-10px) scale(1.05);
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+    }
+
+    .team-image {
+        width: 100px;
+        height: 100px;
+        border: 4px solid #81c784;
+        border-radius: 50%;
+        margin-top: 1rem;
+        object-fit: cover;
+    }
+
+    .team-card-body {
+        padding: 1rem;
+    }
+
+    .team-name {
+        font-family: 'Roboto', sans-serif;
+        font-weight: bold;
+        font-size: 1.1rem;
+        color: #2e7d32;
+        margin: 0.5rem 0;
+    }
+
+    .team-role {
+        font-family: 'Roboto', sans-serif;
+        font-size: 0.95rem;
+        color: #555;
+        margin-bottom: 1rem;
+    }
+
+    .team-heading {
+        text-align: center;
+        font-family: 'Roboto', sans-serif;
+        font-size: 2rem;
+        font-weight: bold;
+        color: #2e7d32;
+        margin-bottom: 2rem;
+    }
+</style>
+
+{% load static %}
+
+<div class="container mt-4 team-container">
+    <!-- Mentors Section -->
+    <h2 class="team-heading">Our Mentors</h2>
+    <div class="row team-row">
+        {% for team in ourteams %}
+            {% if team.role == "Mentor" or team.role == "Chief Mentor" %}
+                <div class="team-card">
+                    <img src="{{ team.image.url }}" class="team-image" alt="{{ team.name }}">
+                    <div class="team-card-body">
+                        <h5 class="team-name">{{ team.name }}</h5>
+                        <p class="team-role">{{ team.role }}</p>
+                        
+                    </div>
+                </div>
+            {% endif %}
+        {% endfor %}
+    </div>
+<br>
+<br>
+    <!-- General Team Section -->
+    <h2 class="team-heading">Our Team</h2>
+    <div class="row team-row">
+        {% for team in ourteams %}
+            {% if team.role != "Mentor" and team.role != "Chief Mentor" %}
+                <div class="team-card">
+                    <img src="{{ team.image.url }}" class="team-image" alt="{{ team.name }}">
+                    <div class="team-card-body">
+                        <h5 class="team-name">{{ team.name }}</h5>
+                        <p class="team-role">{{ team.role }}</p>
+                        <a href="{{ team.link }}" class="github-icon" target="_blank">
+                            <img src="{% static 'images/github.jpeg' %}" alt="GitHub" style="width: 30px; height: 30px; border-radius: 50%;">
+                        </a>
+                    </div>
+                </div>
+            {% endif %}
+        {% endfor %}
+    </div>
+</div>
+
+{% endblock content %}
